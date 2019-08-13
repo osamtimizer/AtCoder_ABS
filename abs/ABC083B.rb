@@ -4,15 +4,10 @@ N = input[0]
 A = input[1]
 B = input[2]
 
-exit unless A && B && N
-exit if 10 ** 4 < N || A < 1|| B  < A || 36 < B
-
-powers = []
-
 BASE = 10
-(0..3).each do |exp|
-  powers << BASE ** exp
-end
+
+exit unless A && B && N
+exit if BASE ** 4 < N || A < 1|| B  < A || 36 < B
 
 applied_sum = 0
 
@@ -21,8 +16,8 @@ applied_sum = 0
   sum = 0
   remain = num
   num_digit.downto(0) do |digit|
-    target_digit_num = remain / powers[digit]
-    remain -= target_digit_num * powers[digit]
+    target_digit_num = remain / (BASE ** digit)
+    remain -= target_digit_num * (BASE ** digit)
     sum += target_digit_num
   end
   applied_sum += num if A <= sum && sum <= B
